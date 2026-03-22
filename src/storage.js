@@ -17,7 +17,7 @@ window.storage = {
   async set(key, value) {
     await supabase
       .from('store')
-      .upsert({ key, value, shared: true })
+      .upsert({ key, value, shared: true }, { onConflict: 'key' })
     return { value }
   },
   async delete(key) {
